@@ -33,7 +33,7 @@ const ComicGenerator = () => {
     <div className="comic-generator-container">
       <div id="comicContainer">
         <form>
-          <label htmlFor="panel1">Panel 1:</label>
+          <label htmlFor="panel1">Enter Image Description:</label>
           <input
             type="text"
             id="panel1"
