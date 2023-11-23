@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './ComicGenerator.css'; // Create a CSS file for styling
+import './ComicGenerator.css'; 
 
 const ComicGenerator = () => {
   const [panelInput, setPanelInput] = useState('');
