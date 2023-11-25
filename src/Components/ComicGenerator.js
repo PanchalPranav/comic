@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import './ComicGenerator.css'; 
+import './ComicGenerator.css';
 
 const ComicGenerator = () => {
   const [panelInput, setPanelInput] = useState('');
   const [comicPanels, setComicPanels] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const generateComic = async () => {
     try {
+      setLoading(true);
+
       // Make API call
       const response = await fetch(
         "https://xdwvg9no7pefghrn.us-east-1.aws.endpoints.huggingface.cloud",
@@ -26,6 +29,8 @@ const ComicGenerator = () => {
     } catch (error) {
       console.error("Error generating comic:", error);
       alert("Failed to generate comic. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -49,10 +54,15 @@ const ComicGenerator = () => {
       </div>
 
       <div id="comicDisplay" className="comic-display-container">
+        {loading && (
+          <div className="spinner-overlay">
+            <div className = "spinner"> </div>
+            <div className = "loading-text"> Loading...</div>
+          </div>
+        )}
         {comicPanels.map((panel, index) => (
           <img
             key={index}
-            // console.log("string");
             src={URL.createObjectURL(panel)}
             alt={`Generated Comic ${index + 1}`}
             className="comicImage"
